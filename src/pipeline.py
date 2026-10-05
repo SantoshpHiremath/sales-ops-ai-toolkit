@@ -21,7 +21,7 @@ SAMPLE_NOTES = (
 def run():
     print("=== Generating synthetic lead pipeline ===")
     leads = generate_leads(n=900, seed=42)
-    print(f"  {len(leads)} synthetic leads generated (not real Airbus CRM data)\n")
+    print(f"  {len(leads)} synthetic leads generated (not real CRM data)\n")
 
     print("=== Lead-Scoring Model: Evaluation ===")
     result = train_and_evaluate(leads)

@@ -1,16 +1,14 @@
-"""Prompt-templated outreach generation: the posting's "Prompt Engineering
-für Sales" task — generating personalized outreach emails from account
-facts and a chosen tone/angle.
+"""Prompt-templated outreach generation: prompt engineering for sales —
+generating personalized outreach emails from account facts and a chosen
+tone/angle.
 
-Disclosure: this module does NOT call an LLM (no API access in this
-environment). Instead it implements the other real half of prompt
-engineering — designing reusable, parameterized prompt templates — and
-renders them two ways: (1) as the actual prompt text that would be sent
+This module does not call an LLM. It implements the prompt-engineering
+side — designing reusable, parameterized prompt templates — and renders
+them two ways: (1) as the actual prompt text that would be sent
 to an LLM (e.g. Claude/ChatGPT) in production, so the prompt-engineering
 artifact itself is real and inspectable, and (2) as a deterministic
 template-filled email for cases with no LLM available, so there's a
-working, testable output today. This distinction is disclosed everywhere
-this project is referenced.
+working, testable output today.
 """
 
 ANGLES = {
@@ -45,7 +43,7 @@ def build_outreach_prompt(account_name, industry, angle, incumbent, notes_summar
         "This is a greenfield account with no confirmed incumbent, so do not assume prior helicopter experience."
     )
 
-    prompt = f"""You are a sales development assistant writing a short, personalized outreach email on behalf of an Airbus Helicopters sales representative.
+    prompt = f"""You are a sales development assistant writing a short, personalized outreach email on behalf of a helicopter manufacturer's sales representative.
 
 Account: {account_name}
 Industry: {industry}
@@ -66,8 +64,8 @@ Keep the tone professional and direct, not salesy. Do not use exclamation points
 def render_template_email(account_name, contact_name, industry, angle, incumbent, notes_summary):
     """Deterministic fallback: fills a fixed template directly (no LLM
     call), producing a real, sendable-quality draft today. Less fluent
-    than what an LLM would produce from the prompt above, and disclosed
-    as such — this is the honest, currently-working half of the feature.
+    than what an LLM would produce from the prompt above; it is the
+    currently-working, no-LLM path of the feature.
     """
     if angle not in ANGLES:
         raise ValueError(f"Unknown angle: {angle}. Choose from {list(ANGLES)}")

@@ -1,17 +1,14 @@
 """AI-assisted capture-plan generation: turns structured facts about a
 target account (and, optionally, free-text notes such as an excerpt from
 a public annual report or press release) into a structured capture-plan
-document — the posting's own "AI-Powered Capture Planning" task.
+document (AI-powered capture planning).
 
-Disclosure: text generation here uses local template synthesis with
-extractive summarization (frequency-based sentence scoring over the
-input notes), not a large language model — there's no Claude/Gemini/
-OpenAI API access in this environment. This is a genuine, testable
-difference from what an LLM-backed version would produce (an LLM would
-generate more fluent, freely-composed prose; this approach selects and
-assembles real sentences from the input, and is therefore more
-constrained but fully inspectable and reproducible). It is disclosed
-here, in the README, and in the CV/cover letter.
+Text generation here uses local template synthesis with extractive
+summarization (frequency-based sentence scoring over the input notes),
+not a large language model. An LLM-backed version would generate more
+fluent, freely-composed prose; this approach selects and assembles real
+sentences from the input, and is therefore more constrained but fully
+inspectable and reproducible.
 """
 import re
 from collections import Counter

@@ -2,14 +2,11 @@
 features a real sales-ops team would actually have in a CRM.
 
 This is classical ML (scikit-learn logistic regression + one-hot
-encoding), not an LLM — there's no Claude/Gemini/OpenAI API access in
-this environment, and a lead-scoring problem like this is a standard
-tabular classification task where classical ML is the right tool anyway,
-not a downgrade from what the posting asks for.
+encoding): lead scoring is a standard tabular classification task where
+classical ML is the right tool.
 
 Evaluated with a proper held-out test split (never trained and tested on
-the same rows) and reported honestly — not smoothed to look artificially
-strong.
+the same rows) and reported as measured.
 """
 import random
 
@@ -57,7 +54,7 @@ def train_and_evaluate(leads, test_size=0.25, seed=42):
     """Genuine held-out evaluation: leads are split into train/test by
     lead_id before any fitting happens, and the model never sees test
     rows during training. Reports accuracy, ROC-AUC, precision, and
-    recall honestly, including on an imbalanced label (won leads are the
+    recall, including on an imbalanced label (won leads are the
     minority class, same as in a real pipeline).
     """
     rows = leads_to_rows(leads)

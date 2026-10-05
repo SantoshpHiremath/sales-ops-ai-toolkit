@@ -154,7 +154,7 @@ def test_extractive_summary_returns_sentences_from_input():
             "Delta sentence about something else entirely unrelated now.")
     summary = extractive_summary(text, max_sentences=2)
     # every word in the summary must come from the original text (nothing
-    # fabricated) -- this is the core honesty property of extractive
+    # fabricated) -- this is the core property of extractive
     # summarization vs. generative summarization
     for sentence in summary.split(". "):
         assert sentence.strip(".") in text or sentence.strip() in text
